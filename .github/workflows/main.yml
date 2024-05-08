@@ -36,7 +36,7 @@ jobs:
       run: python -m pip install --upgrade codecov tox
 
     - name: Configure Datadog Test Visibility
-      uses: nikita-tkachenko-datadog/gha-composite-test@v36
+      uses: nikita-tkachenko-datadog/gha-composite-test@v37
       with:
         languages: python
         service-name: ci-test-project-gha
