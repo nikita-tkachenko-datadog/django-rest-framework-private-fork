@@ -36,7 +36,7 @@ jobs:
       run: python -m pip install --upgrade codecov tox
 
     - name: Configure Datadog Test Visibility
-      uses: nikita-tkachenko-datadog/gha-composite-test@v37
+      uses: nikita-tkachenko-datadog/gha-composite-test@v38
       with:
         languages: python
         service-name: ci-test-project-gha
@@ -44,9 +44,10 @@ jobs:
 
     - name: Run tox targets for ${{ matrix.python-version }}
       run: |
-        python3 -m pip install --disable-pip-version-check "Django>=4.2,<5.0"
-        python3 -m pip install --disable-pip-version-check -r requirements/requirements-optionals.txt -r requirements/requirements-testing.txt
-        python3 ./runtests.py
+        #python3 -m pip install --disable-pip-version-check "Django>=4.2,<5.0"
+        #python3 -m pip install --disable-pip-version-check -r requirements/requirements-optionals.txt -r requirements/requirements-testing.txt
+        #python3 ./runtests.py
+        tox run -f py$(echo ${{ matrix.python-version }} | tr -d .)
 
     - name: Run extra tox targets
       if: ${{ matrix.python-version == '3.9' }}
